@@ -20,7 +20,7 @@ type State struct {
 	output []int
 }
 
-// ----------------- operators ------------------
+// ----------------- operations ------------------
 
 type Operation struct {
 	// operation function
@@ -45,6 +45,7 @@ func mult(s *State, params []int) {
 
 // -------------- main program loop ---------------
 
+// check if int slice contains int
 func contains(arr []int, i int) bool {
 	for _, n := range arr {
 		if i == n {
@@ -54,6 +55,7 @@ func contains(arr []int, i int) bool {
 	return false
 }
 
+// take in parameter modes and get actual parameters to operate on
 func get_params(s *State, param_modes int, o Operation) []int {
 	params := []int{}
 	for p := 1; p <= o.num_params; p++ {
@@ -71,11 +73,14 @@ func get_params(s *State, param_modes int, o Operation) []int {
 }
 
 func main() {
+	// define intcode operations
 	operations := map[int]Operation{
 		1: Operation{function: add, num_params: 3, imm_mode: []int{3}},
 		2: Operation{function: mult, num_params: 3, imm_mode: []int{3}},
 	}
+	// input program
 	tape := []int{1, 9, 10, 3, 2, 3, 11, 0, 99, 30, 40, 50}
+	// current program state
 	s := State{tape: tape, index: 0, input: []int{}, output: []int{}}
 
 	for true {
