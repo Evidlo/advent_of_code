@@ -27,7 +27,7 @@ type Operation struct {
 	function func(*State, []int)
 	// number of operation parameters
 	num_params int
-	// which parameters are position mode by default (1-indexed)
+	// which parameters are immediate mode by default (1-indexed)
 	imm_mode []int
 }
 
